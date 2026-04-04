@@ -1,0 +1,122 @@
+import React from 'react';
+import { Search, Moon, Sun, Plus } from 'lucide-react';
+import { useFinance } from '../../context/FinanceContext';
+
+export const Header: React.FC = () => {
+  const { role, setRole, theme, setTheme, openModal, setCurrentPage } = useFinance();
+  const [navQuery, setNavQuery] = React.useState('');
+
+  const pages = [
+    { name: 'Dashboard', id: 'dashboard' },
+    { name: 'Transactions', id: 'transactions' },
+    { name: 'Insights', id: 'insights' },
+    { name: 'Budget', id: 'budget' },
+  ];
+
+  const handleNavigation = (e: React.FormEvent) => {
+    e.preventDefault();
+    const match = pages.find(p => p.name.toLowerCase() === navQuery.toLowerCase());
+    if (match) {
+      setCurrentPage(match.id as any);
+      setNavQuery('');
+    }
+  };
+
+  return (
+    <header className="h-18 px-6 flex items-center justify-between glass-effect sticky top-4 z-40 transition-all duration-300 rounded-4xl mx-4 mt-4 mb-2">
+      <form onSubmit={handleNavigation} className="flex-1 max-w-sm relative group">
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-(--text-muted) group-focus-within:text-primary-500 transition-colors" size={18} />
+        <input 
+          type="text" 
+          placeholder="Go to Dashboard, Transactions..."
+          value={navQuery}
+          onChange={(e) => setNavQuery(e.target.value)}
+          className="w-full bg-(--app-bg) border border-(--border-main) rounded-2xl py-2 pl-12 pr-4 outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-sm font-semibold text-(--text-primary)"
+        />
+        {navQuery && (
+          <div className="absolute top-full left-0 w-full mt-2 bg-(--card-bg) border border-(--border-main) rounded-2xl shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
+            {pages.filter(p => p.name.toLowerCase().includes(navQuery.toLowerCase())).map(p => (
+              <button
+                key={p.id}
+                type="button"
+                onClick={() => {
+                  setCurrentPage(p.id as any);
+                  setNavQuery('');
+                }}
+                className="w-full text-left px-4 py-3 text-xs font-bold text-(--text-primary) hover:bg-primary-500/10 hover:text-primary-500 transition-all flex items-center justify-between group"
+              >
+                {p.name}
+                <span className="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity bg-primary-500/10 px-2 py-0.5 rounded text-primary-600">Enter</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </form>
+
+      <div className="flex items-center gap-6">
+        {/* Role Switcher */}
+        <div className="hidden md:flex bg-(--app-bg) p-1 rounded-xl border border-(--border-main)">
+          <button 
+            onClick={() => setRole('admin')}
+            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              role === 'admin' 
+                ? 'bg-(--card-bg) text-primary-600 shadow-sm border border-(--border-main)' 
+                : 'text-(--text-muted) hover:text-(--text-primary)'
+            }`}
+          >
+            Admin
+          </button>
+          <button 
+            onClick={() => setRole('viewer')}
+            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              role === 'viewer' 
+                ? 'bg-(--card-bg) text-primary-600 shadow-sm border border-(--border-main)' 
+                : 'text-(--text-muted) hover:text-(--text-primary)'
+            }`}
+          >
+            Viewer
+          </button>
+        </div>
+
+        {/* Global Add Transaction Button */}
+        <button
+          disabled={role === 'viewer'}
+          onClick={() => openModal()}
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg active:scale-95 ${
+            role === 'viewer' 
+              ? 'bg-(--border-main) text-(--text-muted) cursor-not-allowed opacity-60 grayscale' 
+              : 'bg-primary-600 hover:bg-primary-700 text-white shadow-primary-500/20'
+          }`}
+        >
+          <Plus size={18} />
+          <span className="hidden lg:block text-sm">Add New</span>
+        </button>
+
+        {/* Theme Toggle */}
+        <button 
+          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          className="p-2.5 bg-(--card-bg) border border-(--border-main) rounded-xl hover:opacity-80 transition-all shadow-sm"
+          title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+        >
+          {theme === 'light' ? (
+            <Sun size={20} className="text-amber-500" />
+          ) : (
+            <Moon size={20} className="text-primary-500" />
+          )}
+        </button>
+
+        <button className="flex items-center gap-3 pl-2 pr-4 py-1.5 bg-(--card-bg) border border-(--border-main) rounded-full hover:opacity-80 transition-all shadow-sm group">
+          <div className="hidden sm:flex flex-col items-end">
+            <p className="text-sm font-bold text-(--text-primary) leading-none mb-1 whitespace-nowrap">Saurabh Anand</p>
+            <p className="text-[11px] font-medium text-(--text-muted) uppercase tracking-wider whitespace-nowrap">
+              {role === 'admin' ? 'Admin' : 'As a guest'}
+            </p>
+          </div>
+          <div className="w-10 h-10 bg-linear-to-br from-primary-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary-500/20 ring-2 ring-transparent group-hover:ring-primary-500/30 transition-all">
+            <span className="text-sm font-black tracking-tight">SA</span>
+          </div>
+        </button>
+      </div>
+    </header>
+  );
+};
