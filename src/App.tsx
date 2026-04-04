@@ -115,7 +115,7 @@ function AppContent() {
         )}
       >
         <Sidebar />
-        <main className="flex-1 lg:ml-80 min-h-screen flex flex-col transition-colors duration-400 bg-transparent">
+        <main className="flex-1 ml-0 md:ml-28 lg:ml-80 min-h-screen flex flex-col transition-colors duration-400 bg-transparent pb-24 md:pb-0 min-w-0 overflow-x-hidden">
           <Header />
           <div className={cn(
             "flex-1 p-4 lg:p-8 overflow-y-auto",

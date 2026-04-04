@@ -220,7 +220,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ onEdit }) =>
       </div>
 
       <div className="rounded-4xl border border-(--border-main) bg-(--app-bg)/40 overflow-hidden">
-        <div className="overflow-y-auto h-[450px] custom-scrollbar transition-all duration-400 pr-2">
+        <div className="overflow-auto h-[450px] custom-scrollbar transition-all duration-400 pr-2">
           <table className="w-full text-left border-collapse">
             <thead className="sticky top-0 z-20 bg-(--app-bg) backdrop-blur-md">
               <tr className="border-b border-(--border-main)">

@@ -23,7 +23,7 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="h-18 px-6 flex items-center justify-between glass-effect sticky top-4 z-40 transition-all duration-300 rounded-4xl mx-4 mt-4 mb-2">
+    <header className="h-14 sm:h-18 px-3 sm:px-6 flex items-center justify-between glass-effect sticky top-3 sm:top-4 z-40 transition-all duration-300 rounded-2xl sm:rounded-4xl mx-3 sm:mx-4 mt-3 sm:mt-4 mb-2 gap-2 sm:gap-4">
       <form onSubmit={handleNavigation} className="flex-1 max-w-sm relative group">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-(--text-muted) group-focus-within:text-primary-500 transition-colors" size={18} />
         <input 
@@ -31,7 +31,7 @@ export const Header: React.FC = () => {
           placeholder="Go to Dashboard, Transactions..."
           value={navQuery}
           onChange={(e) => setNavQuery(e.target.value)}
-          className="w-full bg-(--app-bg) border border-(--border-main) rounded-2xl py-2 pl-12 pr-4 outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-sm font-semibold text-(--text-primary)"
+          className="w-full bg-(--app-bg) border border-(--border-main) rounded-xl sm:rounded-2xl py-1.5 sm:py-2 pl-10 sm:pl-12 pr-3 sm:pr-4 outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-xs sm:text-sm font-semibold text-(--text-primary)"
         />
         {navQuery && (
           <div className="absolute top-full left-0 w-full mt-2 bg-(--card-bg) border border-(--border-main) rounded-2xl shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
@@ -95,7 +95,7 @@ export const Header: React.FC = () => {
         {/* Theme Toggle */}
         <button 
           onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-          className="p-2.5 bg-(--card-bg) border border-(--border-main) rounded-xl hover:opacity-80 transition-all shadow-sm"
+          className="p-2 sm:p-2.5 bg-(--card-bg) border border-(--border-main) rounded-lg sm:rounded-xl hover:opacity-80 transition-all shadow-sm shrink-0"
           title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
         >
           {theme === 'light' ? (
@@ -106,14 +106,14 @@ export const Header: React.FC = () => {
         </button>
 
         <button className="flex items-center gap-3 pl-2 pr-4 py-1.5 bg-(--card-bg) border border-(--border-main) rounded-full hover:opacity-80 transition-all shadow-sm group">
-          <div className="hidden sm:flex flex-col items-end">
+          <div className="hidden lg:flex flex-col items-end">
             <p className="text-sm font-bold text-(--text-primary) leading-none mb-1 whitespace-nowrap">Saurabh Anand</p>
             <p className="text-[11px] font-medium text-(--text-muted) uppercase tracking-wider whitespace-nowrap">
               {role === 'admin' ? 'Admin' : 'As a guest'}
             </p>
           </div>
-          <div className="w-10 h-10 bg-linear-to-br from-primary-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary-500/20 ring-2 ring-transparent group-hover:ring-primary-500/30 transition-all">
-            <span className="text-sm font-black tracking-tight">SA</span>
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-linear-to-br from-primary-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary-500/20 ring-2 ring-transparent group-hover:ring-primary-500/30 transition-all shrink-0">
+            <span className="text-xs sm:text-sm font-black tracking-tight">SA</span>
           </div>
         </button>
       </div>

@@ -18,13 +18,13 @@ export const Dashboard: React.FC = () => {
     <div className="space-y-8 animate-fade-in pb-12">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-(--text-primary) flex items-center gap-2 tracking-tight">
+          <h1 className="text-2xl md:text-3xl font-black text-(--text-primary) flex items-center gap-2 tracking-tight">
             <LayoutDashboard className="text-primary-500" size={28} />
             Welcome Back Saurabh Anand
           </h1>
-          <p className="text-(--text-muted) mt-1 font-medium flex items-center gap-2">
-            <Sparkles size={14} className="text-purple-500" />
-            Your financial assistant is analyzing <span className="text-primary-500 font-bold underline">real-time data</span>.
+          <p className="text-(--text-muted) mt-1 font-medium flex items-start sm:items-center gap-2">
+            <Sparkles size={14} className="text-purple-500 mt-1 sm:mt-0 shrink-0" />
+            <span>Your financial assistant is analyzing <span className="text-primary-500 font-bold underline">real-time data</span>.</span>
           </p>
         </div>
       </div>

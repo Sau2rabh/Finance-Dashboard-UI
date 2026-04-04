@@ -15,9 +15,9 @@ export const Budget: React.FC = () => {
             <TrendingUp className="text-primary-500" size={28} />
             Budget & Planning
           </h1>
-          <p className="text-(--text-muted) mt-1 font-medium flex items-center gap-2">
-            <Target size={14} className="text-rose-500" />
-            Plan your future and keep your spending <span className="text-primary-500 font-bold underline">under control</span>.
+          <p className="text-(--text-muted) mt-1 font-medium flex items-start sm:items-center gap-2">
+            <Target size={14} className="text-rose-500 mt-1 sm:mt-0 shrink-0" />
+            <span>Plan your future and keep your spending <span className="text-primary-500 font-bold underline">under control</span>.</span>
           </p>
         </div>
       </div>

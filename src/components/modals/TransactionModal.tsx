@@ -4,6 +4,7 @@ import type { Category, TransactionType, Transaction } from '../../types';
 import { useFinance } from '../../context/FinanceContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../../lib/utils';
+import toast from 'react-hot-toast';
 
 const CATEGORIES: Category[] = [
   'Salary', 'Food', 'Rent', 'Shopping', 'Transport', 
@@ -64,8 +65,10 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
 
     if (editingTransaction) {
       editTransaction({ ...editingTransaction, ...data });
+      toast.success('Transaction updated successfully!');
     } else {
       addTransaction(data);
+      toast.success('Transaction saved successfully!');
     }
     onClose();
   };

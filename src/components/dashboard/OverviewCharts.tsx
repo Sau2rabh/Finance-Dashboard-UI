@@ -124,7 +124,7 @@ export const OverviewCharts: React.FC = () => {
         </div>
         
         <div className="flex-1 w-full min-h-[280px]">
-          <ResponsiveContainer width="100%" height="100%" minHeight={280}>
+          <ResponsiveContainer width="100%" height={280} minWidth={1}>
             <AreaChart data={areaData}>
               <defs>
                 <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
@@ -185,7 +185,7 @@ export const OverviewCharts: React.FC = () => {
         </div>
         
         <div className="flex-1 w-full relative min-h-[280px] flex items-center justify-center">
-          <ResponsiveContainer width="100%" height={240}>
+          <ResponsiveContainer width="100%" height={240} minWidth={1}>
             <PieChart margin={{ top: 20, bottom: 20, left: 0, right: 0 }}>
               <Pie
                 data={categoryData}
@@ -225,16 +225,16 @@ export const OverviewCharts: React.FC = () => {
 
         <div className="mt-8 space-y-3">
           {categoryData.slice(0, 4).map((item, index) => (
-            <div key={item.name} className="flex items-center justify-between group cursor-pointer p-2 hover:bg-(--app-bg) rounded-xl transition-all">
-              <div className="flex items-center gap-3">
-                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
-                <span className="text-xs font-bold text-(--text-muted) group-hover:text-primary-500 transition-colors uppercase tracking-widest">{item.name}</span>
+            <div key={item.name} className="flex items-center justify-between group cursor-pointer p-1.5 sm:p-2 hover:bg-(--app-bg) rounded-xl transition-all">
+              <div className="flex items-center gap-1.5 sm:gap-2 flex-1">
+                <div className="w-2.5 h-2.5 shrink-0 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
+                <span className="text-[9px] sm:text-[10px] font-bold text-(--text-muted) group-hover:text-primary-500 transition-colors uppercase tracking-wider">{item.name}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-black text-(--text-primary)">
+              <div className="flex items-center gap-1 sm:gap-2 shrink-0 ml-1">
+                <span className="text-[9px] sm:text-[10px] font-black text-(--text-primary)">
                   ₹{item.value.toLocaleString()}
                 </span>
-                <span className="text-[9px] font-black py-0.5 px-2 bg-white/5 dark:bg-black/20 rounded-full text-primary-500">
+                <span className="text-[8px] sm:text-[9px] font-black py-0.5 px-1.5 bg-white/5 dark:bg-black/20 rounded-full text-primary-500 shrink-0">
                   {((item.value / totalSpent) * 100).toFixed(0)}%
                 </span>
               </div>

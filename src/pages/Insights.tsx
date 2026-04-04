@@ -12,9 +12,9 @@ export const Insights: React.FC = () => {
             <BarChart3 className="text-emerald-500" size={28} />
             Insights & Analytics
           </h1>
-          <p className="text-(--text-muted) mt-1 font-medium flex items-center gap-2">
-            <Sparkles size={14} className="text-purple-500" />
-            AI-powered financial deep dive for smarter <span className="text-emerald-500 font-bold underline">decisions</span>.
+          <p className="text-(--text-muted) mt-1 font-medium flex items-start sm:items-center gap-2">
+            <Sparkles size={14} className="text-purple-500 mt-1 sm:mt-0 shrink-0" />
+            <span>AI-powered financial deep dive for smarter <span className="text-emerald-500 font-bold underline">decisions</span>.</span>
           </p>
         </div>
       </div>
