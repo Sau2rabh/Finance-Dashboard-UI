@@ -220,7 +220,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ onEdit }) =>
       </div>
 
       <div className="rounded-4xl border border-(--border-main) bg-(--app-bg)/40 overflow-hidden">
-        <div className="overflow-auto h-[450px] custom-scrollbar transition-all duration-400 pr-2">
+        <div className="overflow-auto h-[450px] custom-scrollbar transition-all duration-200 pr-2">
           <table className="w-full text-left border-collapse">
             <thead className="sticky top-0 z-20 bg-(--app-bg) backdrop-blur-md">
               <tr className="border-b border-(--border-main)">
@@ -284,14 +284,14 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ onEdit }) =>
                         {tx.type === 'income' ? <ArrowDownLeft size={18} /> : <ArrowUpRight size={18} />}
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-sm font-bold text-(--text-primary) transition-colors duration-400">{tx.description}</span>
+                        <span className="text-sm font-bold text-(--text-primary) transition-colors duration-200">{tx.description}</span>
                         <span className="text-[10px] font-bold text-(--text-muted) uppercase tracking-tighter">{tx.type}</span>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4">
                     <span className={cn(
-                      "px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-tighter border transition-all duration-400",
+                      "px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-tighter border transition-all duration-200",
                       categoryColors[tx.category as keyof typeof categoryColors] || 'bg-surface-500/10 text-surface-500 border-surface-500/20'
                     )}>
                       {tx.category}
@@ -303,7 +303,7 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ onEdit }) =>
                   <td className="px-6 py-4 text-right">
                     <div className="flex flex-col items-end">
                       <span className={cn(
-                        "text-sm font-black tracking-tighter transition-colors duration-400",
+                        "text-sm font-black tracking-tighter transition-colors duration-200",
                         tx.type === 'income' ? "text-emerald-500" : "text-rose-500"
                       )}>
                         {tx.type === 'income' ? '+' : '-'}₹{tx.amount.toLocaleString('en-IN')}

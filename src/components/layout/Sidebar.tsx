@@ -20,7 +20,7 @@ export const Sidebar: React.FC = () => {
 
   return (
     <div className="
-      fixed z-50 glass-effect transition-all duration-400 ease-in-out
+      fixed z-50 glass-effect transition-all duration-200 ease-in-out
       
       /* Mobile: Bottom Nav */
       bottom-0 left-0 w-full h-20 flex flex-row items-center justify-around rounded-t-3xl border-t border-(--border-main) border-x-0 border-b-0 m-0 px-2 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]

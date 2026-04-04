@@ -110,12 +110,12 @@ function AppContent() {
       <BackgroundBlobs pause={isModalOpen || isDeleteModalOpen} />
       <div 
         className={cn(
-          "min-h-screen flex bg-transparent transition-all duration-500 relative",
+          "min-h-screen flex bg-transparent transition-all duration-200 relative",
           (isModalOpen || isDeleteModalOpen) && "blur-md brightness-90 saturate-150 pointer-events-none scale-[0.98] origin-center"
         )}
       >
         <Sidebar />
-        <main className="flex-1 ml-0 md:ml-28 lg:ml-80 min-h-screen flex flex-col transition-colors duration-400 bg-transparent pb-24 md:pb-0 min-w-0 overflow-x-hidden">
+        <main className="flex-1 ml-0 md:ml-28 lg:ml-80 min-h-screen flex flex-col transition-colors duration-200 bg-transparent pb-24 md:pb-0 min-w-0 overflow-x-hidden">
           <Header />
           <div className={cn(
             "flex-1 p-4 lg:p-8 overflow-y-auto",

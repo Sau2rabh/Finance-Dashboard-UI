@@ -96,7 +96,7 @@ export const OverviewCharts: React.FC = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
       {/* Area Chart */}
-      <div className="lg:col-span-2 p-6 bg-(--card-bg) border border-(--border-main) rounded-4xl min-h-[450px] flex flex-col transition-all duration-400 group shadow-lg shadow-black/5 dark:shadow-none">
+      <div className="lg:col-span-2 p-6 bg-(--card-bg) border border-(--border-main) rounded-4xl min-h-[450px] flex flex-col transition-all duration-200 group shadow-lg shadow-black/5 dark:shadow-none">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div className="space-y-1">
             <h3 className="text-xl font-black text-(--text-primary) tracking-tight">Cash Flow Intelligence</h3>
@@ -178,7 +178,7 @@ export const OverviewCharts: React.FC = () => {
       </div>
 
       {/* Pie Chart */}
-      <div className="p-6 bg-(--card-bg) border border-(--border-main) rounded-4xl min-h-[450px] flex flex-col transition-all duration-400 group shadow-lg shadow-black/5 dark:shadow-none">
+      <div className="p-6 bg-(--card-bg) border border-(--border-main) rounded-4xl min-h-[450px] flex flex-col transition-all duration-200 group shadow-lg shadow-black/5 dark:shadow-none">
         <div className="space-y-1 mb-6">
           <h3 className="text-xl font-black text-(--text-primary) tracking-tight">Spending Sectors</h3>
           <p className="text-[10px] font-black text-(--text-muted) uppercase tracking-widest leading-none">Proportional Allocation</p>

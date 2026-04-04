@@ -30,7 +30,7 @@ export const PredictiveAnalytics: React.FC = () => {
   const budgetUsagePct = Math.min(100, (prediction.estimatedTotal / budget) * 100);
 
   return (
-    <div className="p-6 bg-(--card-bg) border border-(--border-main) rounded-4xl transition-all duration-400 group shadow-lg shadow-black/5 dark:shadow-none">
+    <div className="p-6 bg-(--card-bg) border border-(--border-main) rounded-4xl transition-all duration-200 group shadow-lg shadow-black/5 dark:shadow-none">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-purple-500/10 text-purple-600 rounded-xl">

@@ -65,7 +65,7 @@ export const StatCard: React.FC<StatCardProps> = ({ title, amount, change, icon:
         <div className={`p-3 rounded-2xl ${iconBg[color]} transition-transform duration-300 group-hover:scale-110`}>
           <Icon size={24} />
         </div>
-        <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-400 ${
+        <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all duration-200 ${
           isPositive 
             ? 'bg-emerald-500/10 text-emerald-600' 
             : 'bg-rose-500/10 text-rose-600'
@@ -78,7 +78,7 @@ export const StatCard: React.FC<StatCardProps> = ({ title, amount, change, icon:
       <div className="space-y-1">
         <p className="text-sm font-bold text-(--text-muted) uppercase tracking-widest leading-none mb-1">{title}</p>
         <div className="flex items-baseline gap-1">
-          <span className="text-2xl font-black text-(--text-primary) tracking-tighter transition-colors duration-400">
+          <span className="text-2xl font-black text-(--text-primary) tracking-tighter transition-colors duration-200">
             ₹{amount.toLocaleString('en-IN')}
           </span>
           <span className="text-[10px] font-bold text-(--text-muted) uppercase">INR</span>

@@ -23,7 +23,7 @@ export const BudgetTracker: React.FC = () => {
   };
 
   return (
-    <div className="p-6 bg-(--card-bg) border border-(--border-main) rounded-4xl transition-all duration-400 group shadow-lg shadow-black/5 dark:shadow-none">
+    <div className="p-6 bg-(--card-bg) border border-(--border-main) rounded-4xl transition-all duration-200 group shadow-lg shadow-black/5 dark:shadow-none">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary-500/10 text-primary-500 rounded-xl">
