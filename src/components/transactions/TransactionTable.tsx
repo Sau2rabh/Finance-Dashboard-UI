@@ -57,16 +57,22 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ onEdit }) =>
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  // Date Formatter
+  const formatDate = (iso: string, forCsv = false) => {
+    const d = new Date(iso + 'T00:00:00');
+    if (forCsv) {
+      // Standard DD-MM-YYYY for CSV to avoid Excel's #### hiding (less likely than long names)
+      return d.toLocaleDateString('en-GB').replace(/\//g, '-');
+    }
+    // Professional display for UI
+    return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+  };
+
   // CSV Export
   const handleDownload = () => {
-    const formatDate = (iso: string) => {
-      const d = new Date(iso + 'T00:00:00');
-      return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
-      // e.g. "05 Apr 2026" — Excel reads as text, no #### issue
-    };
     const headers = ['Date', 'Description', 'Category', 'Type', 'Amount (INR)', 'Net Amount'];
     const rows = filteredTransactions.map(tx => [
-      `"${formatDate(tx.date)}"`,
+      `"${formatDate(tx.date, true)}"`,
       `"${tx.description.replace(/"/g, '""')}"`,
       tx.category,
       tx.type.charAt(0).toUpperCase() + tx.type.slice(1),
@@ -298,7 +304,9 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ onEdit }) =>
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm font-bold text-(--text-muted) group-hover:text-(--text-primary) transition-colors duration-300">{tx.date}</span>
+                    <span className="text-sm font-bold text-(--text-muted) group-hover:text-(--text-primary) transition-colors duration-300">
+                      {formatDate(tx.date)}
+                    </span>
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex flex-col items-end">
