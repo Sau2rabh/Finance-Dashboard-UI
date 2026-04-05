@@ -127,10 +127,24 @@ export const TransactionTable: React.FC<TransactionTableProps> = ({ onEdit }) =>
   };
 
   const SortIcon = ({ field }: { field: 'date' | 'amount' }) => {
-    if (sortBy !== field) return <Filter size={12} className="opacity-20 ml-1 inline" />;
-    return sortOrder === 'asc' 
-      ? <ArrowUpRight size={12} className="ml-1 inline text-primary-500" /> 
-      : <ArrowDownLeft size={12} className="ml-1 inline text-primary-500" />;
+    const isActive = sortBy === field;
+    return (
+      <div className={cn(
+        "inline-flex flex-col ml-1.5 transition-all duration-300",
+        isActive ? "opacity-100 translate-y-0" : "opacity-20 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0"
+      )}>
+        <Filter 
+          size={10} 
+          className={cn(
+            "transition-colors",
+            isActive ? "text-primary-500 fill-primary-500/10" : "text-(--text-muted)"
+          )} 
+        />
+        {isActive && (
+          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary-500 animate-pulse" />
+        )}
+      </div>
+    );
   };
 
   return (

@@ -1,10 +1,31 @@
 import React from 'react';
-import { Search, Moon, Sun, Plus, ReceiptIndianRupee } from 'lucide-react';
+import { Search, Moon, Sun, Plus, ReceiptIndianRupee, ShieldCheck, ShieldAlert } from 'lucide-react';
 import { useFinance } from '../../context/FinanceContext';
+import { useEffect, useRef } from 'react';
+import toast from 'react-hot-toast';
 
 export const Header: React.FC = () => {
   const { role, setRole, theme, setTheme, openModal, setCurrentPage } = useFinance();
   const [navQuery, setNavQuery] = React.useState('');
+  const prevRole = useRef(role);
+
+  useEffect(() => {
+    if (prevRole.current !== role) {
+      toast.success(`Switched to ${role === 'admin' ? 'Administrator' : 'Viewer'} Mode`, {
+        icon: role === 'admin' ? '🔐' : '👁️',
+        duration: 2000,
+        style: {
+          borderRadius: '1rem',
+          background: 'var(--card-bg)',
+          color: 'var(--text-primary)',
+          border: '1px solid var(--border-main)',
+          fontWeight: 'bold',
+          fontSize: '12px'
+        }
+      });
+      prevRole.current = role;
+    }
+  }, [role]);
 
   const pages = [
     { name: 'Dashboard', id: 'dashboard' },
@@ -118,7 +139,17 @@ export const Header: React.FC = () => {
           <div className="hidden xl:flex flex-col items-end truncate">
             <p className="text-sm font-bold text-(--text-primary) leading-none mb-1 whitespace-nowrap">Saurabh Anand</p>
             <p className="text-[11px] font-medium text-(--text-muted) uppercase tracking-wider whitespace-nowrap">
-              {role === 'admin' ? 'Admin' : 'As a guest'}
+            {role === 'admin' ? (
+              <span className="flex items-center gap-1">
+                <ShieldCheck size={10} className="text-emerald-500" />
+                Admin
+              </span>
+            ) : (
+              <span className="flex items-center gap-1">
+                <ShieldAlert size={10} className="text-rose-500" />
+                Viewer Mode
+              </span>
+            )}
             </p>
           </div>
           <div className="w-8 h-8 sm:w-10 sm:h-10 bg-linear-to-br from-primary-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-primary-500/20 ring-2 ring-transparent group-hover:ring-primary-500/30 transition-all shrink-0">
