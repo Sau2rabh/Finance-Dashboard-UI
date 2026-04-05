@@ -129,3 +129,8 @@
     box-shadow: var(--card-shadow);
   }
 }
+
+/* Remove default browser focus outline from Recharts wrapper when clicking charts */
+.recharts-wrapper {
+  outline: none !important;
+}

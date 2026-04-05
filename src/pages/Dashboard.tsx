@@ -6,9 +6,10 @@ import { PredictiveAnalytics } from '../components/dashboard/PredictiveAnalytics
 import { useFinance } from '../context/FinanceContext';
 import { Wallet, ArrowUpCircle, ArrowDownCircle, LayoutDashboard, Sparkles, TrendingUp } from 'lucide-react';
 import type { Transaction } from '../types';
+import { cn } from '../lib/utils';
 
 export const Dashboard: React.FC = () => {
-  const { stats, openModal, setCurrentPage } = useFinance();
+  const { stats, openModal, setCurrentPage, budget } = useFinance();
 
   const handleEdit = (tx: Transaction) => {
     openModal(tx);
@@ -30,6 +31,31 @@ export const Dashboard: React.FC = () => {
       </div>
 
       <SmartAlerts />
+
+      <div className="glass-card rounded-4xl p-6 md:px-8 space-y-4 shadow-lg shadow-black/5 dark:shadow-none">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-xl font-black text-(--text-primary) tracking-tight">Monthly Budget Tracker</h3>
+            <p className="text-[11px] sm:text-xs font-black text-(--text-muted) uppercase tracking-widest mt-1">
+              {((stats.totalExpense / budget) * 100).toFixed(1)}% of your limit utilized
+            </p>
+          </div>
+          <div className="text-right">
+            <span className="text-xl font-black text-(--text-primary)">₹{stats.totalExpense.toLocaleString()}</span>
+            <span className="text-xs sm:text-sm font-bold text-(--text-muted)"> / ₹{budget.toLocaleString()}</span>
+          </div>
+        </div>
+        <div className="h-4 sm:h-5 w-full bg-(--app-bg) rounded-full border border-(--border-main) overflow-hidden p-[3px]">
+          <div 
+            className={cn(
+              "h-full rounded-full transition-all duration-1000 ease-out",
+              (stats.totalExpense / budget) >= 0.9 ? "bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]" :
+              (stats.totalExpense / budget) >= 0.7 ? "bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]" : "bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"
+            )} 
+            style={{ width: `${Math.min((stats.totalExpense / budget) * 100, 100)}%` }} 
+          />
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard 

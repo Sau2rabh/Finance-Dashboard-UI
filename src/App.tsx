@@ -9,7 +9,7 @@ import { TransactionModal } from './components/modals/TransactionModal';
 import { DeleteConfirmationModal } from './components/modals/DeleteConfirmationModal';
 import { useFinance } from './context/FinanceContext';
 import { Toaster } from 'react-hot-toast';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { cn } from './lib/utils';
 import { motion } from 'framer-motion';
 
@@ -77,6 +77,14 @@ function BackgroundBlobs({ pause }: { pause: boolean }) {
 
 function AppContent() {
   const { isModalOpen, closeModal, editingTransaction, isDeleteModalOpen, currentPage } = useFinance();
+  const [isAppLoading, setIsAppLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsAppLoading(false);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (isModalOpen || isDeleteModalOpen) {
@@ -103,6 +111,26 @@ function AppContent() {
         return <Dashboard />;
     }
   };
+
+  if (isAppLoading) {
+    return (
+      <>
+        <BackgroundBlobs pause={false} />
+        <div className="min-h-screen flex items-center justify-center bg-transparent relative z-50">
+          <div className="flex flex-col items-center gap-6 glass-card p-12 rounded-4xl shadow-2xl animate-in zoom-in-95 duration-500">
+            <div className="relative">
+              <div className="w-16 h-16 border-4 border-primary-500/20 border-t-primary-500 rounded-full animate-spin shadow-[0_0_15px_rgba(59,93,249,0.5)]" />
+              <div className="absolute inset-0 border-4 border-indigo-500/20 border-b-indigo-500 rounded-full animate-spin opacity-50" style={{ animationDirection: 'reverse', animationDuration: '1.5s' }} />
+            </div>
+            <div className="text-center space-y-1">
+              <h2 className="text-xl font-black bg-linear-to-r from-primary-600 to-indigo-500 bg-clip-text text-transparent tracking-widest animate-pulse">FINPULSE</h2>
+              <p className="text-[10px] font-black text-(--text-muted) uppercase tracking-[0.3em]">Connecting securely...</p>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>

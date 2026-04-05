@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Moon, Sun, Plus } from 'lucide-react';
+import { Search, Moon, Sun, Plus, ReceiptIndianRupee } from 'lucide-react';
 import { useFinance } from '../../context/FinanceContext';
 
 export const Header: React.FC = () => {
@@ -24,14 +24,24 @@ export const Header: React.FC = () => {
 
   return (
     <header className="h-14 sm:h-18 px-3 sm:px-6 flex items-center justify-between glass-effect sticky top-3 sm:top-4 z-40 transition-all duration-300 rounded-2xl sm:rounded-4xl mx-3 sm:mx-4 mt-3 sm:mt-4 mb-2 gap-2 sm:gap-4">
-      <form onSubmit={handleNavigation} className="flex-1 max-w-sm relative group">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-(--text-muted) group-focus-within:text-primary-500 transition-colors" size={18} />
+      {/* Mobile Logo */}
+      <div className="flex md:hidden items-center gap-1.5 shrink-0">
+        <div className="w-9 h-9 bg-primary-600 rounded-xl flex items-center justify-center text-white shadow-md shadow-primary-500/30">
+          <ReceiptIndianRupee size={20} />
+        </div>
+        <span className="text-lg font-bold bg-linear-to-r from-primary-600 to-indigo-500 bg-clip-text text-transparent tracking-tight hidden sm:block">
+          FinPulse
+        </span>
+      </div>
+
+      <form onSubmit={handleNavigation} className="flex-1 max-w-sm relative group min-w-[120px] sm:min-w-[160px] lg:min-w-[200px]">
+        <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-(--text-muted) group-focus-within:text-primary-500 transition-colors w-[16px] h-[16px] sm:w-[18px] sm:h-[18px]" />
         <input 
           type="text" 
-          placeholder="Go to Dashboard, Transactions..."
+          placeholder="Go to Dashboard..."
           value={navQuery}
           onChange={(e) => setNavQuery(e.target.value)}
-          className="w-full bg-(--app-bg) border border-(--border-main) rounded-xl sm:rounded-2xl py-1.5 sm:py-2 pl-10 sm:pl-12 pr-3 sm:pr-4 outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-xs sm:text-sm font-semibold text-(--text-primary)"
+          className="w-full bg-(--app-bg) border border-(--border-main) rounded-xl sm:rounded-2xl py-2 sm:py-2 pl-9 sm:pl-12 pr-3 sm:pr-4 outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-xs sm:text-sm font-semibold text-(--text-primary) text-ellipsis whitespace-nowrap overflow-hidden"
         />
         {navQuery && (
           <div className="absolute top-full left-0 w-full mt-2 bg-(--card-bg) border border-(--border-main) rounded-2xl shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
@@ -53,7 +63,7 @@ export const Header: React.FC = () => {
         )}
       </form>
 
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-2 sm:gap-4 lg:gap-6 shrink-0">
         {/* Role Switcher */}
         <div className="hidden md:flex bg-(--app-bg) p-1 rounded-xl border border-(--border-main)">
           <button 
@@ -78,18 +88,17 @@ export const Header: React.FC = () => {
           </button>
         </div>
 
-        {/* Global Add Transaction Button */}
         <button
           disabled={role === 'viewer'}
           onClick={() => openModal()}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold transition-all shadow-lg active:scale-95 ${
+          className={`flex items-center justify-center gap-2 px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl font-bold transition-all shadow-lg active:scale-95 shrink-0 ${
             role === 'viewer' 
               ? 'bg-(--border-main) text-(--text-muted) cursor-not-allowed opacity-60 grayscale' 
               : 'bg-primary-600 hover:bg-primary-700 text-white shadow-primary-500/20'
           }`}
         >
-          <Plus size={18} />
-          <span className="hidden lg:block text-sm">Add New</span>
+          <Plus className="w-[20px] h-[20px] sm:w-[18px] sm:h-[18px]" />
+          <span className="hidden xl:block text-sm">Add New</span>
         </button>
 
         {/* Theme Toggle */}
@@ -105,8 +114,8 @@ export const Header: React.FC = () => {
           )}
         </button>
 
-        <button className="flex items-center gap-3 pl-2 pr-4 py-1.5 bg-(--card-bg) border border-(--border-main) rounded-full hover:opacity-80 transition-all shadow-sm group">
-          <div className="hidden lg:flex flex-col items-end">
+        <button className="flex items-center gap-2 sm:gap-3 pl-2 pr-2 xl:pr-4 py-1.5 bg-(--card-bg) border border-(--border-main) rounded-full hover:opacity-80 transition-all shadow-sm group shrink-0 min-w-0">
+          <div className="hidden xl:flex flex-col items-end truncate">
             <p className="text-sm font-bold text-(--text-primary) leading-none mb-1 whitespace-nowrap">Saurabh Anand</p>
             <p className="text-[11px] font-medium text-(--text-muted) uppercase tracking-wider whitespace-nowrap">
               {role === 'admin' ? 'Admin' : 'As a guest'}

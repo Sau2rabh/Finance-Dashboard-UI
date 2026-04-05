@@ -53,12 +53,30 @@ export const TransactionModal: React.FC<TransactionModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!amount || !description) return;
+    if (!amount || !description) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+
+    const numAmount = parseFloat(amount);
+    if (isNaN(numAmount) || numAmount <= 0) {
+      toast.error('Amount must be greater than 0');
+      return;
+    }
+
+    const selectedDate = new Date(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    if (selectedDate > today) {
+      toast.error('Date cannot be in the future');
+      return;
+    }
 
     const data = {
       type,
       category,
-      amount: parseFloat(amount),
+      amount: numAmount,
       description,
       date,
     };

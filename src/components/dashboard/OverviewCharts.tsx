@@ -125,7 +125,7 @@ export const OverviewCharts: React.FC = () => {
         
         <div className="flex-1 w-full min-h-[280px]">
           <ResponsiveContainer width="100%" height={280} minWidth={1}>
-            <AreaChart data={areaData}>
+            <AreaChart data={areaData} margin={{ top: 30, right: 30, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#3b5df9" stopOpacity={0.2}/>
